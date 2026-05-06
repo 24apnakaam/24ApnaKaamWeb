@@ -1,122 +1,108 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { DownloadSimple, ShieldCheck, MapPin, Translate } from '@phosphor-icons/react';
+import { HeroVisual } from './components/HeroVisual';
+import {
+  StatsSection, HowItWorks, WhyApnaKaam,
+  TradesSection, CTABanner, Footer,
+  PlayStoreButton, AppStoreButton,
+} from './components/Sections';
+import './index.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Hero items reveal on first load
+  useEffect(() => {
+    const ids = ['hero-eyebrow', 'hero-title', 'hero-sub', 'hero-ctas', 'hero-meta'];
+    ids.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.classList.add('in'), 120 + i * 110);
+    });
+  }, []);
 
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+      {/* NAV */}
+      <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
+        <div className="container nav-inner">
+          <a href="#" aria-label="ApnaKaam home" className="brand-lockup">
+            <img className="brand-icon" src="/app-icon.jpeg" alt="ApnaKaam" />
+            <span className="brand-word">
+              <span className="brand-word-hi">अपना काम</span>
+              <span className="brand-word-en">APNAKAAM</span>
+            </span>
+          </a>
+          <div className="nav-links">
+            <a href="#how">How it works</a>
+            <a href="#why">Why us</a>
+            <a href="#trades">Trades</a>
+            <a href="#download">Get the app</a>
+          </div>
+          <a href="#download" className="nav-cta">
+            <DownloadSimple size={16} weight="bold" />
+            Download app
+          </a>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      </nav>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      {/* HERO */}
+      <header className="hero">
+        <div className="container hero-grid">
+          <div>
+            <div id="hero-eyebrow" className="reveal">
+              <span className="eyebrow">
+                <span className="dot" />
+                Now live in Bengaluru
+              </span>
+            </div>
+            <h1 id="hero-title" className="reveal">
+              Hire a verified worker,{' '}
+              <br />
+              <span className="accent">in your area</span>, today.
+            </h1>
+            <p id="hero-sub" className="hero-sub reveal">
+              ApnaKaam connects Bengaluru households with trusted local workers — plumbers, electricians, carpenters, painters and more. Post a job and get matched in minutes.
+            </p>
+            <div id="hero-ctas" className="hero-ctas reveal">
+              <PlayStoreButton />
+              <AppStoreButton />
+            </div>
+            <div id="hero-meta" className="hero-meta reveal">
+              <div className="row">
+                <ShieldCheck size={18} weight="bold" color="var(--brand-green-600)" />
+                Every worker ID-verified
+              </div>
+              <div className="row">
+                <MapPin size={18} weight="bold" color="var(--brand-saffron-600)" />
+                Serving Bengaluru
+              </div>
+              <div className="row">
+                <Translate size={18} weight="bold" color="var(--brand-saffron-600)" />
+                हिन्दी + English
+              </div>
+            </div>
+          </div>
+          <div className="hero-visual">
+            <HeroVisual />
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      </header>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      <div id="promise"><StatsSection /></div>
+      <HowItWorks />
+      <WhyApnaKaam />
+      <TradesSection />
+      <CTABanner />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

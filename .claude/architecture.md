@@ -1,0 +1,1 @@
+/Users/nitish/Documents/workspace/apna-kaam/.claude/architecture.md

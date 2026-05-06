@@ -1,0 +1,1 @@
+/Users/nitish/Documents/workspace/apna-kaam/.claude/plan-role-split-home-job-posting.md
