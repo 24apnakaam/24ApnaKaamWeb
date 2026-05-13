@@ -516,7 +516,7 @@ export function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <span>© 2026 2424ApnaKaam Technologies. Made in India.</span>
+          <span>© 2026 24ApnaKaam Technologies. Made in India.</span>
           <span>हिन्दी · English</span>
         </div>
       </div>
