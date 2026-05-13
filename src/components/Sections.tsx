@@ -398,6 +398,8 @@ export function CTABanner() {
   const ref = useRef<HTMLElement>(null);
   useReveal(ref);
 
+  return null;
+
   return (
     <section className="section" id="download" ref={ref}>
       <div className="container">
