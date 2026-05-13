@@ -8,8 +8,6 @@ import {
   TradesSection,
   CTABanner,
   Footer,
-  PlayStoreButton,
-  AppStoreButton,
 } from "./components/Sections";
 import { LoginModal } from "./components/LoginModal";
 import { supabase } from "./lib/supabase";
