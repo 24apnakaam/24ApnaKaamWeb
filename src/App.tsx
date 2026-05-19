@@ -10,10 +10,19 @@ import {
   Footer,
 } from "./components/Sections";
 import { LoginModal } from "./components/LoginModal";
+import { PrivacyPolicy } from "./components/PrivacyPolicy";
+import { DeleteAccount } from "./components/DeleteAccount";
 import { supabase } from "./lib/supabase";
 import "./index.css";
 
 function App() {
+  if (window.location.pathname === "/privacy") {
+    return <PrivacyPolicy />;
+  }
+  if (window.location.pathname === "/delete-account") {
+    return <DeleteAccount />;
+  }
+
   const [scrolled, setScrolled] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [userPhone, setUserPhone] = useState<string | null>(null);

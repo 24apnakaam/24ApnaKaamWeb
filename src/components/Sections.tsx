@@ -510,7 +510,7 @@ export function Footer() {
                 <a href="#">Trust & safety</a>
               </li>
               <li>
-                <a href="#">Privacy</a>
+                <a href="/privacy">Privacy</a>
               </li>
             </ul>
           </div>
